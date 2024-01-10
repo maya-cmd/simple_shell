@@ -17,7 +17,7 @@ extern char **environ;
 
 char *read_command_entered(void);
 char **handling_command_entered_args(char *command_entered);
-int command_execution(char **args_present, char **argv);
+int command_execution(char *args_present, char **argv);
 
 /* ===== stringhelpers.c ===== */
 char *_strdup(const char *str);
