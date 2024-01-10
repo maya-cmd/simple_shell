@@ -20,7 +20,7 @@ int command_execution(char *args_present, char **argv)
 		if (execve(args_present, argv, environ) == -1)
 
 		{
-			perror(argv[0]); /* prints an error msg if the execve fails*/
+			perror("Execve failed"); /* prints an error msg if the execve fails*/
 			exit(99); /*exit the child process with an error code*/
 		}
 	}
