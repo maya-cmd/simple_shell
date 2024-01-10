@@ -27,8 +27,8 @@ int main(int ac, char **argv)
 			return (exit_code);/*return exit code*/
 		}
 		args_present = handling_command_entered_args(command_entered);
-                if (!args_present)
-                        continue;/*skip the rest of the loop if tokenization fails*/
+		if (!args_present)
+			continue;/*skip the rest of the loop if tokenization fails*/
 
 
 		exit_code = command_execution(args_present, argv);/*exec command*/
