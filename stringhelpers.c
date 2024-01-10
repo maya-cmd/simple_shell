@@ -1,25 +1,39 @@
 #include "shell.h"
+
+/*
+ * _strdup - duplicates a string in memory
+ *
+ * @s: the string to duplicate.
+ *
+ * Return: a pointer ti the allocated duplicate string,
+ * or NULL if insufficient memory is available.
+ */
 char *_strdup(const char *s)
 {
-        char *ptr;
-        int n, length = 0;
+	char *ptr;
+	int n, length = 0;
 
-        if (s == NULL)
-                return NULL;
+	/* checks if input string is null */
+	if (s == NULL)
+		return (NULL);
 
-        while (*s != '\0')
-        {
-                length++;
-                s++;
-        }
+	/* calculates the lenght of the input string */
+	while (*s != '\0')
+	{
+		length++;
+		s++;
+	}
 
-        s = s - length;
-        ptr = malloc(sizeof(char) * (length + 1));
-        if (ptr == NULL)
-                return (NULL);
+	/* resets pointer to the beginning of the input string */
+	s = s - length;
 
-        for (n = 0; n <= length; n++)
-                ptr[n] = s[n];
+	/* allocates memory for duplicate strings*/
+	ptr = malloc(sizeof(char) * (length + 1));
+	if (ptr == NULL)
+		return (NULL);
 
-        return (ptr);
+	/*copy char from input to newly allocated memory*/
+	for (n = 0; n <= length; n++)
+		ptr[n] = s[n];
+	return (ptr); /*return the pointer ti the duplicated string*/
 }
