@@ -12,7 +12,7 @@
 
 int main(int ac, char **argv)
 {
-	char *command_entered = NULL, *args_present = NULL;
+	char *command_entered = NULL, **args_present = NULL;
 	int exit_code = 0;
 	(void)ac;/*unused parameter*/
 
@@ -26,6 +26,9 @@ int main(int ac, char **argv)
 			free(command_entered);/*free allocated memory*/
 			return (exit_code);/*return exit code*/
 		}
+		args_present = handling_command_entered_args(command_entered);
+                if (!args_present)
+                        continue;/*skip the rest of the loop if tokenization fails*/
 
 
 		exit_code = command_execution(args_present, argv);/*exec command*/

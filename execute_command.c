@@ -8,7 +8,7 @@
  *
  * Return: exit status of the executed command.
  */
-int command_execution(char *args_present, char **argv)
+int command_execution(char **args_present, char **argv)
 {
 	pid_t process_id;
 	int status;
@@ -17,10 +17,10 @@ int command_execution(char *args_present, char **argv)
 	if (process_id == 0)
 
 	{
-		if (execve(args_present, argv, environ) == -1)
+		if (execve(args_present[0], args_present, environ) == -1)
 
 		{
-			perror("Execve failed"); /* prints an error msg if the execve fails*/
+			perror(argv[0]); /* prints an error msg if the execve fails*/
 			exit(99); /*exit the child process with an error code*/
 		}
 	}
