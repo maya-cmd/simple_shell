@@ -13,7 +13,7 @@
 int main(int ac, char **argv)
 {
 	char *command_entered = NULL, **args_present = NULL;
-	int i, exit_code = 0;
+	int i = 0, exit_code = 0;
 	(void)ac;/*unused parameter*/
 	
 	while (1)
