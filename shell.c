@@ -13,9 +13,9 @@
 int main(int ac, char **argv)
 {
 	char *command_entered = NULL, **args_present = NULL;
-	int exit_code = 0;
+	int i, exit_code = 0;
 	(void)ac;/*unused parameter*/
-
+	
 	while (1)
 	{
 		command_entered = read_command_entered();/*read user input*/
@@ -26,12 +26,15 @@ int main(int ac, char **argv)
 			free(command_entered);/*free allocated memory*/
 			return (exit_code);/*return exit code*/
 		}
+		i++;
 		args_present = handling_command_entered_args(command_entered);
 		if (!args_present)
 			continue;/*skip the rest of the loop if tokenization fails*/
-
-
-		exit_code = command_execution(args_present, argv);/*exec command*/
+		if (shell_builtin(args_present[0]))
+			executing_builtin(args_present, argv, &exit_code, i);
+		else
+		
+			exit_code = command_execution(args_present, argv, i);/*exec command*/
 
 	}
 }
