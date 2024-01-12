@@ -11,7 +11,7 @@
 int command_execution(char **args_present, char **argv, int i)
 {
 	pid_t process_id;
-	int status;
+	int status, exit_status;
 	char *full_path;
 
 	full_path = path_finder(args_present[0]);
@@ -45,26 +45,24 @@ int command_execution(char **args_present, char **argv, int i)
 	}
 	else
 	{
-		/* parent process*/
+			/* parent process*/
 		waitpid(process_id, &status, 0); /* wait for the child process to finish*/
+		if (WIFEXITED(status))
 		{
-			perror("waitpid failed");
-			free(full_path);
+			exit_status = WEXITSTATUS(status);
 			free_arr(args_present);
-			return (-1);
+			free(full_path);
+			return (exit_status);
 		}
-	}
-	free_arr(args_present);
-	free(full_path);
 
-	if (WIFEXITED(status))
-	{
-		return (WEXITSTATUS(status)); /* Return the exit status of exec command*/
-	}
-	else
-	{
-		perror("process_id failed");
-		return (-1);
-	}
+		else
+		{
+			perror("child process failed");
+			free_arr(args_present);
+			free(full_path);
+			return(-1);
+		}
 
+	}
+	return(-1);
 }
