@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
- * _itoa - Changes an integer to string
- * @i: The integer to be used to converted.
+ * _itoa - Changes an integer to string.
+ * @i: The integer to be used in conversion.
  * Return: The string representation of the integer.
  */
 char *_itoa(int i)
@@ -13,7 +13,7 @@ char *_itoa(int i)
 		buff[k++] = '0';
 	else
 	{
-		/* Convert the integer to a string */
+		/* Convert an integer to a string */
 		while (i > 0)
 		{
 			buff[k++] = (i % 10) + '0';
@@ -27,7 +27,7 @@ char *_itoa(int i)
 	return (_strdup(buff));
 }
 /**
- * error_printer - Funtionn error message to standard error.
+ * error_printer - Function error message to standard error.
  * @n: The name of the program.
  * @command: The command bringing the error.
  * @i: The index of the command in use.
